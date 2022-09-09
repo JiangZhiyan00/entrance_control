@@ -1,0 +1,24 @@
+#开发环境
+com:
+  environment:
+    profile: prod #环境
+    db-master-url: jdbc:mysql://33.69.6.155:3306/dash_data?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    db-master-name: dash #主数据库用户
+    db-master-password: dash@123456 #主数据库密码
+
+xxl:
+  job:
+    admin:
+      addresses: http://33.69.2.106:9998/xxl-job-admin
+    accessToken:
+    executor:
+      appname: entrance-control-statistics-manager
+      address:
+      ip:
+      port: 11997
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 366
+
+# log config
+logging:
+  config: classpath:logback.xml

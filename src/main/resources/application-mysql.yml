@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: ${com.environment.db-master-url}
+    username: ${com.environment.db-master-name}
+    password: ${com.environment.db-master-password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    #####datasource druid pool
+    druid:
+      filters: stat
+      initial-size: 5
+      max-active: 5 #最大活跃连接数/最大连接数
+      min-idle: 5 #最大闲置连接数/核心连接数
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      validation-query: select 'x'
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 5000

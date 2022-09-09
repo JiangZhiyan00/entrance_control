@@ -1,0 +1,5 @@
+开发环境：
+nohup java -jar -Xms256m -Xmx256m -Duser.timezone=GMT+08 entrance_control.jar --spring.profiles.active=dev --server.port=11996 >/dev/null 2>&1 &
+
+生产环境信息：
+nohup java -jar -Xms256m -Xmx256m -Duser.timezone=GMT+08 entrance_control.jar --spring.profiles.active=prod --server.port=11996 >/dev/null 2>&1 &

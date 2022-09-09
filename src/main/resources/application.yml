@@ -1,0 +1,31 @@
+server:
+  port: 11996
+spring:
+  profiles:
+    active:
+      - dev #环境，dev/pst/prod
+    include:
+      - mysql #数据库
+  application:
+    name: entrance-control-statistics-manager
+  jackson:
+    time-zone: GMT+8 #时区
+    serialization:
+      write-dates-as-timestamps: true #springboot 2.0以上版本默认返回string,修改转为long
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: false #驼峰自动转换 user_name ==> userName
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #日志,只会在控制台输出
+  mapper-locations:
+    - classpath*:com/**/mapper/*Mapper.xml
+
+jiandaoyun:
+  appId: 607d2f234b98d7000705915b
+  entryId: 5d75b7512ff83f0af7064702
+  apiKey: cZxsikpmazw6iYXYgGUGzSZ7PMFeMYGA
+
+
+
+
+

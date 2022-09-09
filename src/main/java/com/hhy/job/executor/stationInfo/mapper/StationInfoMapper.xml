@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hhy.job.executor.stationInfo.mapper.IStationInfoMapper">
+
+	<resultMap type="com.hhy.job.executor.stationInfo.entity.StationInfo" id="baseResultMap">
+		<id column="id" property="id"/>
+		<result column="centre_name" property="centreName"/>
+		<result column="cu_name" property="cuName"/>
+		<result column="company_name" property="companyName"/>
+		<result column="company_code" property="companyCode"/>
+		<result column="road_name" property="roadName"/>
+		<result column="road_code" property="roadCode"/>
+		<result column="section_name" property="sectionName"/>
+		<result column="station_name" property="stationName"/>
+		<result column="station_code" property="stationCode"/>
+		<result column="station_hex" property="stationHex"/>
+		<result column="status" property="status"/>
+		<result column="create_user" property="createUser"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_user" property="updateUser"/>
+		<result column="last_update_time" property="lastUpdateTime"/>
+		<result column="isdeleted" property="isdeleted"/>
+		<result column="lon" property="lon"/>
+		<result column="lat" property="lat"/>
+		<result column="sort" property="sort"/>
+		<result column="off_the_site" property="offTheSite"/>
+		<result column="is_describe" property="isDescribe"/>
+		<result column="group_" property="group_"/>
+	</resultMap>
+	
+	<resultMap id="baseResultMapExt" type="com.hhy.job.executor.stationInfo.entity.StationInfoVo" extends="baseResultMap">
+	</resultMap>
+
+	<sql id="columns">
+		id, 
+		centre_name, 
+		cu_name, 
+		company_name, 
+		company_code, 
+		road_name, 
+		road_code, 
+		section_name, 
+		station_name, 
+		station_code, 
+		station_hex, 
+		status, 
+		create_user, 
+		create_time, 
+		update_user, 
+		last_update_time, 
+		isdeleted, 
+		lon, 
+		lat, 
+		sort, 
+		off_the_site, 
+		is_describe, 
+		group_
+	</sql>
+	
+	<!--带别名的列-->
+	<sql id="columnsAlias">
+		t.id, 
+		t.centre_name, 
+		t.cu_name, 
+		t.company_name, 
+		t.company_code, 
+		t.road_name, 
+		t.road_code, 
+		t.section_name, 
+		t.station_name, 
+		t.station_code, 
+		t.station_hex, 
+		t.status, 
+		t.create_user, 
+		t.create_time, 
+		t.update_user, 
+		t.last_update_time, 
+		t.isdeleted, 
+		t.lon, 
+		t.lat, 
+		t.sort, 
+		t.off_the_site, 
+		t.is_describe, 
+		t.group_
+	</sql>
+	
+	<sql id="vals">
+		#{id}, 
+		#{centreName}, 
+		#{cuName}, 
+		#{companyName}, 
+		#{companyCode}, 
+		#{roadName}, 
+		#{roadCode}, 
+		#{sectionName}, 
+		#{stationName}, 
+		#{stationCode}, 
+		#{stationHex}, 
+		#{status}, 
+		#{createUser}, 
+		#{createTime}, 
+		#{updateUser}, 
+		#{lastUpdateTime}, 
+		#{isdeleted}, 
+		#{lon}, 
+		#{lat}, 
+		#{sort}, 
+		#{offTheSite}, 
+		#{isDescribe}, 
+		#{group_}
+	</sql>
+		
+	<!-- 给where查询的表起别名t,方便多表关联查询 -->
+	<sql id="whereSql">
+		<if test="id != null and id != ''">
+			and t.id = #{id}
+		</if>
+		<if test="centreName != null and centreName != ''">
+			and t.centre_name = #{centreName}
+		</if>
+		<if test="cuName != null and cuName != ''">
+			and t.cu_name = #{cuName}
+		</if>
+		<if test="companyName != null and companyName != ''">
+			and t.company_name = #{companyName}
+		</if>
+		<if test="companyCode != null and companyCode != ''">
+			and t.company_code = #{companyCode}
+		</if>
+		<if test="roadName != null and roadName != ''">
+			and t.road_name = #{roadName}
+		</if>
+		<if test="roadCode != null and roadCode != ''">
+			and t.road_code = #{roadCode}
+		</if>
+		<if test="sectionName != null and sectionName != ''">
+			and t.section_name = #{sectionName}
+		</if>
+		<if test="stationName != null and stationName != ''">
+			and t.station_name = #{stationName}
+		</if>
+		<if test="stationCode != null and stationCode != ''">
+			and t.station_code = #{stationCode}
+		</if>
+		<if test="stationHex != null and stationHex != ''">
+			and t.station_hex = #{stationHex}
+		</if>
+		<if test="status != null and status != ''">
+			and t.status = #{status}
+		</if>
+		<if test="createUser != null">
+			and t.create_user = #{createUser}
+		</if>
+		<if test="createTime != null">
+			and t.create_time = #{createTime}
+		</if>
+		<if test="updateUser != null">
+			and t.update_user = #{updateUser}
+		</if>
+		<if test="lastUpdateTime != null">
+			and t.last_update_time = #{lastUpdateTime}
+		</if>
+		<if test="isdeleted != null and isdeleted != ''">
+			and t.isdeleted = #{isdeleted}
+		</if>
+		<if test="lon != null and lon != ''">
+			and t.lon = #{lon}
+		</if>
+		<if test="lat != null and lat != ''">
+			and t.lat = #{lat}
+		</if>
+		<if test="sort != null and sort != ''">
+			and t.sort = #{sort}
+		</if>
+		<if test="offTheSite != null and offTheSite != ''">
+			and t.off_the_site = #{offTheSite}
+		</if>
+		<if test="isDescribe != null and isDescribe != ''">
+			and t.is_describe = #{isDescribe}
+		</if>
+		<if test="group_ != null and group_ != ''">
+			and t.group_ = #{group_}
+		</if>
+	</sql>
+	
+	
+
+	<insert id="insert" parameterType="com.hhy.job.executor.stationInfo.entity.StationInfo" useGeneratedKeys="true" keyProperty="id">
+		<!-- <selectKey keyProperty="id" resultType="Long" order="AFTER">
+			select last_insert_id()
+		</selectKey> -->
+      	<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+            select replace(uuid(), '-', '') as id from dual
+        </selectKey>
+		insert into crm_station_info (<include refid="columns" />) 
+		values (<include refid="vals" />)
+	</insert>
+	
+    <!-- 逻辑删除 -->
+	<update id="logicDeleteByPrimaryKeys" parameterType="java.util.Map">
+		update crm_station_info set isDeleted = 'Y' where
+		id in
+		<foreach collection="stationInfos" open="(" close=")" separator="," item="id">
+		    #{id}
+		</foreach>
+	</update>
+	
+	<update id="logicDeleteByPrimaryKey" parameterType="java.util.Map">
+		update crm_station_info set isDeleted = 'Y' where id = #{id}
+	</update>
+	
+	<!-- 物理删除 -->
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.Map">
+		delete from crm_station_info  where
+		id in
+		<foreach collection="stationInfos" open="(" close=")" separator="," item="id">
+		    #{id}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.util.Map">
+		delete from crm_station_info  where id = #{id}
+	</delete>
+	
+	<select id="selectStationInfoByPrimaryKey" resultMap="baseResultMapExt">
+		select 
+		<include refid="columns"/>
+		from crm_station_info
+		where id=#{id}
+	</select>
+
+	<update id="updateIgnoreNull">
+		update crm_station_info
+		<set>
+			<if test="centreName != null">
+				centre_name=#{centreName},
+			</if>
+			<if test="cuName != null">
+				cu_name=#{cuName},
+			</if>
+			<if test="companyName != null">
+				company_name=#{companyName},
+			</if>
+			<if test="companyCode != null">
+				company_code=#{companyCode},
+			</if>
+			<if test="roadName != null">
+				road_name=#{roadName},
+			</if>
+			<if test="roadCode != null">
+				road_code=#{roadCode},
+			</if>
+			<if test="sectionName != null">
+				section_name=#{sectionName},
+			</if>
+			<if test="stationName != null">
+				station_name=#{stationName},
+			</if>
+			<if test="stationCode != null">
+				station_code=#{stationCode},
+			</if>
+			<if test="stationHex != null">
+				station_hex=#{stationHex},
+			</if>
+			<if test="status != null">
+				status=#{status},
+			</if>
+			<if test="createUser != null">
+				create_user=#{createUser},
+			</if>
+			<if test="createTime != null">
+				create_time=#{createTime},
+			</if>
+			<if test="updateUser != null">
+				update_user=#{updateUser},
+			</if>
+			<if test="lastUpdateTime != null">
+				last_update_time=#{lastUpdateTime},
+			</if>
+			<if test="isdeleted != null">
+				isdeleted=#{isdeleted},
+			</if>
+			<if test="lon != null">
+				lon=#{lon},
+			</if>
+			<if test="lat != null">
+				lat=#{lat},
+			</if>
+			<if test="sort != null">
+				sort=#{sort},
+			</if>
+			<if test="offTheSite != null">
+				off_the_site=#{offTheSite},
+			</if>
+			<if test="isDescribe != null">
+				is_describe=#{isDescribe},
+			</if>
+			<if test="group_ != null">
+				group_=#{group_}
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<!-- 更新 -->
+	<update id="update">
+		update crm_station_info
+		<set>
+			centre_name=#{centreName},
+			cu_name=#{cuName},
+			company_name=#{companyName},
+			company_code=#{companyCode},
+			road_name=#{roadName},
+			road_code=#{roadCode},
+			section_name=#{sectionName},
+			station_name=#{stationName},
+			station_code=#{stationCode},
+			station_hex=#{stationHex},
+			status=#{status},
+			create_user=#{createUser},
+			create_time=#{createTime},
+			update_user=#{updateUser},
+			last_update_time=#{lastUpdateTime},
+			isdeleted=#{isdeleted},
+			lon=#{lon},
+			lat=#{lat},
+			sort=#{sort},
+			off_the_site=#{offTheSite},
+			is_describe=#{isDescribe},
+			group_=#{group_}
+		</set>
+		where id=#{id}
+	</update>
+	
+	
+	<!-- 根据部分属性对象查询全部结果，不分页 -->
+	<select id="selectForList" parameterType="com.hhy.job.executor.stationInfo.entity.StationInfo" resultMap="baseResultMapExt">
+		select
+		<include refid="columnsAlias"/>
+		from
+			crm_station_info t
+		where 1 = 1
+		<include refid="whereSql" />
+	</select>	
+
+	<select id="queryTotalStationInfos" parameterType="com.hhy.job.executor.stationInfo.entity.StationInfoParam" resultType="java.lang.Long">
+		select
+			count(id)
+		from crm_station_info t
+		where 1=1
+		<include refid="whereSql" />
+	</select>
+	
+	<!-- 列表页查询 -->
+	<select id="queryStationInfoForList" parameterType="com.hhy.job.executor.stationInfo.entity.StationInfoParam" resultMap="baseResultMapExt">
+		select
+		<include refid="columnsAlias"/>
+		from
+			crm_station_info t
+		where 1=1
+		<include refid="whereSql" />
+	</select>
+	
+	<!-- 根据唯一性参数查询数据 -->
+	<select id="selectForUnique" parameterType="com.hhy.job.executor.stationInfo.entity.StationInfo" resultMap="baseResultMapExt">
+		select <include refid="columnsAlias"/> from crm_station_info t
+		where t.id != #{id}
+			<if test="centreName != null and centreName != ''">
+				and t.centre_name = #{centreName}
+			</if>
+			<if test="cuName != null and cuName != ''">
+				and t.cu_name = #{cuName}
+			</if>
+			<if test="companyName != null and companyName != ''">
+				and t.company_name = #{companyName}
+			</if>
+			<if test="companyCode != null and companyCode != ''">
+				and t.company_code = #{companyCode}
+			</if>
+			<if test="roadName != null and roadName != ''">
+				and t.road_name = #{roadName}
+			</if>
+			<if test="roadCode != null and roadCode != ''">
+				and t.road_code = #{roadCode}
+			</if>
+			<if test="sectionName != null and sectionName != ''">
+				and t.section_name = #{sectionName}
+			</if>
+			<if test="stationName != null and stationName != ''">
+				and t.station_name = #{stationName}
+			</if>
+			<if test="stationCode != null and stationCode != ''">
+				and t.station_code = #{stationCode}
+			</if>
+			<if test="stationHex != null and stationHex != ''">
+				and t.station_hex = #{stationHex}
+			</if>
+			<if test="status != null and status != ''">
+				and t.status = #{status}
+			</if>
+			<if test="createUser != null and createUser != ''">
+				and t.create_user = #{createUser}
+			</if>
+			<if test="createTime != null">
+				and t.create_time = #{createTime}
+			</if>
+			<if test="updateUser != null and updateUser != ''">
+				and t.update_user = #{updateUser}
+			</if>
+			<if test="lastUpdateTime != null">
+				and t.last_update_time = #{lastUpdateTime}
+			</if>
+			<if test="isdeleted != null and isdeleted != ''">
+				and t.isdeleted = #{isdeleted}
+			</if>
+			<if test="lon != null and lon != ''">
+				and t.lon = #{lon}
+			</if>
+			<if test="lat != null and lat != ''">
+				and t.lat = #{lat}
+			</if>
+			<if test="sort != null and sort != ''">
+				and t.sort = #{sort}
+			</if>
+			<if test="offTheSite != null and offTheSite != ''">
+				and t.off_the_site = #{offTheSite}
+			</if>
+			<if test="isDescribe != null and isDescribe != ''">
+				and t.is_describe = #{isDescribe}
+			</if>
+			<if test="group_ != null and group_ != ''">
+				and t.group_ = #{group_}
+			</if>
+	</select>
+
+</mapper>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hhy.job.executor.trfPersuadeRetIllCarAnalyze.mapper.ITrfPersuadeRetIllCarAnalyzeMapper">
+
+	<resultMap type="com.hhy.job.executor.trfPersuadeRetIllCarAnalyze.entity.TrfPersuadeRetIllCarAnalyze" id="baseResultMap">
+		<id column="dwstrfpersuaderetillcaranalyzeid" property="dwstrfpersuaderetillcaranalyzeid"/>
+		<result column="centername" property="centername"/>
+		<result column="roadname" property="roadname"/>
+		<result column="stationid" property="stationid"/>
+		<result column="stationname" property="stationname"/>
+		<result column="date" property="date"/>
+		<result column="typecount" property="typecount"/>
+		<result column="type" property="type"/>
+		<result column="typename" property="typename"/>
+		<result column="inputtime" property="inputtime"/>
+		<result column="created_at" property="createdAt"/>
+		<result column="updated_at" property="updatedAt"/>
+	</resultMap>
+	
+	<resultMap id="baseResultMapExt" type="com.hhy.job.executor.trfPersuadeRetIllCarAnalyze.entity.TrfPersuadeRetIllCarAnalyzeVo" extends="baseResultMap">
+	</resultMap>
+
+	<sql id="columns">
+		dwstrfpersuaderetillcaranalyzeid, 
+		centername, 
+		roadname, 
+		stationid, 
+		stationname, 
+		date,
+		typecount, 
+		type, 
+		typename, 
+		inputtime, 
+		created_at, 
+		updated_at
+	</sql>
+	
+	<!--带别名的列-->
+	<sql id="columnsAlias">
+		t.dwstrfpersuaderetillcaranalyzeid, 
+		t.centername, 
+		t.roadname, 
+		t.stationid, 
+		t.stationname, 
+		t.date,
+		t.typecount, 
+		t.type, 
+		t.typename, 
+		t.inputtime, 
+		t.created_at, 
+		t.updated_at
+	</sql>
+	
+	<sql id="vals">
+		#{dwstrfpersuaderetillcaranalyzeid}, 
+		#{centername}, 
+		#{roadname}, 
+		#{stationid}, 
+		#{stationname}, 
+		#{date},
+		#{typecount}, 
+		#{type}, 
+		#{typename}, 
+		#{inputtime}, 
+		#{createdAt}, 
+		#{updatedAt}
+	</sql>
+		
+	<!-- 给where查询的表起别名t,方便多表关联查询 -->
+	<sql id="whereSql">
+		<if test="dwstrfpersuaderetillcaranalyzeid != null">
+			and t.dwstrfpersuaderetillcaranalyzeid = #{dwstrfpersuaderetillcaranalyzeid}
+		</if>
+		<if test="centername != null and centername != ''">
+			and t.centername = #{centername}
+		</if>
+		<if test="roadname != null and roadname != ''">
+			and t.roadname = #{roadname}
+		</if>
+		<if test="stationid != null and stationid != ''">
+			and t.stationid = #{stationid}
+		</if>
+		<if test="stationname != null and stationname != ''">
+			and t.stationname = #{stationname}
+		</if>
+		<if test="date != null and date != ''">
+			and t.date = #{date}
+		</if>
+		<if test="typecount != null and typecount != ''">
+			and t.typecount = #{typecount}
+		</if>
+		<if test="type != null and type != ''">
+			and t.type = #{type}
+		</if>
+		<if test="typename != null and typename != ''">
+			and t.typename = #{typename}
+		</if>
+		<if test="inputtime != null">
+			and t.inputtime = #{inputtime}
+		</if>
+		<if test="createdAt != null">
+			and t.created_at = #{createdAt}
+		</if>
+		<if test="updatedAt != null">
+			and t.updated_at = #{updatedAt}
+		</if>
+	</sql>
+	
+	
+
+	<insert id="insert" parameterType="com.hhy.job.executor.trfPersuadeRetIllCarAnalyze.entity.TrfPersuadeRetIllCarAnalyze" useGeneratedKeys="true" keyProperty="dwstrfpersuaderetillcaranalyzeid">
+		insert into dws_trf_persuade_ret_ill_car_analyze (<include refid="columns" />) 
+		values (<include refid="vals" />)
+	</insert>
+	
+    <!-- 逻辑删除 -->
+	<update id="logicDeleteByPrimaryKeys" parameterType="java.util.Map">
+		update dws_trf_persuade_ret_ill_car_analyze set isDeleted = 'Y' where
+		dwstrfpersuaderetillcaranalyzeid in
+		<foreach collection="trfPersuadeRetIllCarAnalyzes" open="(" close=")" separator="," item="dwstrfpersuaderetillcaranalyzeid">
+		    #{dwstrfpersuaderetillcaranalyzeid}
+		</foreach>
+	</update>
+	
+	<update id="logicDeleteByPrimaryKey" parameterType="java.util.Map">
+		update dws_trf_persuade_ret_ill_car_analyze set isDeleted = 'Y' where dwstrfpersuaderetillcaranalyzeid = #{dwstrfpersuaderetillcaranalyzeid}
+	</update>
+	
+	<!-- 物理删除 -->
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.Map">
+		delete from dws_trf_persuade_ret_ill_car_analyze  where
+		dwstrfpersuaderetillcaranalyzeid in
+		<foreach collection="trfPersuadeRetIllCarAnalyzes" open="(" close=")" separator="," item="dwstrfpersuaderetillcaranalyzeid">
+		    #{dwstrfpersuaderetillcaranalyzeid}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.util.Map">
+		delete from dws_trf_persuade_ret_ill_car_analyze  where dwstrfpersuaderetillcaranalyzeid = #{dwstrfpersuaderetillcaranalyzeid}
+	</delete>
+	
+	<select id="selectTrfPersuadeRetIllCarAnalyzeByPrimaryKey" resultMap="baseResultMapExt">
+		select 
+		<include refid="columns"/>
+		from dws_trf_persuade_ret_ill_car_analyze
+		where dwstrfpersuaderetillcaranalyzeid=#{dwstrfpersuaderetillcaranalyzeid}
+	</select>
+
+	<update id="updateIgnoreNull">
+		update dws_trf_persuade_ret_ill_car_analyze
+		<set>
+			<if test="centername != null">
+				centername=#{centername},
+			</if>
+			<if test="roadname != null">
+				roadname=#{roadname},
+			</if>
+			<if test="stationid != null">
+				stationid=#{stationid},
+			</if>
+			<if test="stationname != null">
+				stationname=#{stationname},
+			</if>
+			<if test="date != null">
+				date=#{date},
+			</if>
+			<if test="typecount != null">
+				typecount=#{typecount},
+			</if>
+			<if test="type != null">
+				type=#{type},
+			</if>
+			<if test="typename != null">
+				typename=#{typename},
+			</if>
+			<if test="inputtime != null">
+				inputtime=#{inputtime},
+			</if>
+			<if test="createdAt != null">
+				created_at=#{createdAt},
+			</if>
+			<if test="updatedAt != null">
+				updated_at=#{updatedAt}
+			</if>
+		</set>
+		where dwstrfpersuaderetillcaranalyzeid=#{dwstrfpersuaderetillcaranalyzeid}
+	</update>
+	
+	<!-- 更新 -->
+	<update id="update">
+		update dws_trf_persuade_ret_ill_car_analyze
+		<set>
+			centername=#{centername},
+			roadname=#{roadname},
+			stationid=#{stationid},
+			stationname=#{stationname},
+			date=#{date},
+			typecount=#{typecount},
+			type=#{type},
+			typename=#{typename},
+			inputtime=#{inputtime},
+			created_at=#{createdAt},
+			updated_at=#{updatedAt}
+		</set>
+		where dwstrfpersuaderetillcaranalyzeid=#{dwstrfpersuaderetillcaranalyzeid}
+	</update>
+	
+	
+	<!-- 根据部分属性对象查询全部结果，不分页 -->
+	<select id="selectForList" parameterType="com.hhy.job.executor.trfPersuadeRetIllCarAnalyze.entity.TrfPersuadeRetIllCarAnalyze" resultMap="baseResultMapExt">
+		select
+		<include refid="columnsAlias"/>
+		from
+			dws_trf_persuade_ret_ill_car_analyze t
+		where 1 = 1
+		<include refid="whereSql" />
+	</select>	
+
+	<select id="queryTotalTrfPersuadeRetIllCarAnalyzes" parameterType="com.hhy.job.executor.trfPersuadeRetIllCarAnalyze.entity.TrfPersuadeRetIllCarAnalyzeParam" resultType="java.lang.Long">
+		select
+			count(dwsTrfPersuadeRetIllCarAnalyzeId)
+		from dws_trf_persuade_ret_ill_car_analyze t
+		where 1=1
+		<include refid="whereSql" />
+	</select>
+	
+	<!-- 列表页查询 -->
+	<select id="queryTrfPersuadeRetIllCarAnalyzeForList" parameterType="com.hhy.job.executor.trfPersuadeRetIllCarAnalyze.entity.TrfPersuadeRetIllCarAnalyzeParam" resultMap="baseResultMapExt">
+		select
+		<include refid="columnsAlias"/>
+		from
+			dws_trf_persuade_ret_ill_car_analyze t
+		where 1=1
+		<include refid="whereSql" />
+	</select>
+	
+	<!-- 根据唯一性参数查询数据 -->
+	<select id="selectForUnique" parameterType="com.hhy.job.executor.trfPersuadeRetIllCarAnalyze.entity.TrfPersuadeRetIllCarAnalyze" resultMap="baseResultMapExt">
+		select <include refid="columnsAlias"/> from dws_trf_persuade_ret_ill_car_analyze t
+		where t.dwstrfpersuaderetillcaranalyzeid != #{dwstrfpersuaderetillcaranalyzeid}
+			<if test="centername != null and centername != ''">
+				and t.centername = #{centername}
+			</if>
+			<if test="roadname != null and roadname != ''">
+				and t.roadname = #{roadname}
+			</if>
+			<if test="stationid != null and stationid != ''">
+				and t.stationid = #{stationid}
+			</if>
+			<if test="stationname != null and stationname != ''">
+				and t.stationname = #{stationname}
+			</if>
+			<if test="date != null and date != ''">
+				and t.date = #{date}
+			</if>
+			<if test="typecount != null and typecount != ''">
+				and t.typecount = #{typecount}
+			</if>
+			<if test="type != null and type != ''">
+				and t.type = #{type}
+			</if>
+			<if test="typename != null and typename != ''">
+				and t.typename = #{typename}
+			</if>
+			<if test="inputtime != null">
+				and t.inputtime = #{inputtime}
+			</if>
+			<if test="createdAt != null">
+				and t.created_at = #{createdAt}
+			</if>
+			<if test="updatedAt != null">
+				and t.updated_at = #{updatedAt}
+			</if>
+	</select>
+
+</mapper>
